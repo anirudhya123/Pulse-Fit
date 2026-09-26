@@ -20,7 +20,7 @@ export const MEMBERSHIP_PLANS: MembershipPlan[] = [
     price: 29,
     period: 'per month',
     popular: false,
-    colorTheme: 'stone',
+    colorTheme: 'black',
     features: [
       'Access to full gym floor & cardio machines',
       'Locker room & standard shower access',
@@ -36,7 +36,7 @@ export const MEMBERSHIP_PLANS: MembershipPlan[] = [
     price: 59,
     period: 'per month',
     popular: true,
-    colorTheme: 'gold',
+    colorTheme: 'pink',
     features: [
       'All Basic Plan perks included',
       'Unlimited group fitness & HIIT classes',
@@ -53,7 +53,7 @@ export const MEMBERSHIP_PLANS: MembershipPlan[] = [
     price: 99,
     period: 'per month',
     popular: false,
-    colorTheme: 'gold',
+    colorTheme: 'pink',
     features: [
       'All Premium perks included',
       'Dedicated weekly 1-on-1 certified coach',

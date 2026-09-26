@@ -97,7 +97,7 @@ export default function App() {
 
   return (
     <AuthProvider>
-      <div className="min-h-screen bg-brown-950 text-stone-100 font-sans antialiased selection:bg-gold-500 selection:text-brown-950 flex flex-col">
+      <div className="min-h-screen bg-black text-zinc-100 font-sans antialiased selection:bg-pink-500 selection:text-white flex flex-col">
         
         {/* 1. TOP NAVIGATION */}
         <Navbar
@@ -109,9 +109,9 @@ export default function App() {
         {toastMessage && (
           <aside
             aria-live="polite"
-            className="fixed bottom-6 right-6 z-50 px-4 py-3 rounded-2xl bg-gradient-to-r from-gold-500 to-amber-500 text-brown-950 font-bold text-xs shadow-2xl flex items-center gap-2 animate-in slide-in-from-bottom-5 duration-300 border border-gold-400"
+            className="fixed bottom-6 right-6 z-50 px-4 py-3 rounded-2xl bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 text-white font-bold text-xs shadow-2xl shadow-pink-500/30 flex items-center gap-2 animate-in slide-in-from-bottom-5 duration-300 border border-pink-400/50"
           >
-            <div className="w-5 h-5 rounded-full bg-brown-950 text-gold-400 flex items-center justify-center shrink-0">
+            <div className="w-5 h-5 rounded-full bg-black/80 text-pink-300 flex items-center justify-center shrink-0">
               <Check className="w-3.5 h-3.5 stroke-[3]" />
             </div>
             <span>{toastMessage}</span>

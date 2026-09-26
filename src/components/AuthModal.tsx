@@ -229,29 +229,29 @@ export const AuthModal: React.FC = () => {
   return (
     <div
       id="auth-modal-backdrop"
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-brown-950/80 backdrop-blur-md overflow-y-auto"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md overflow-y-auto"
       onClick={(e) => {
         if (e.target === e.currentTarget) closeAuthModal();
       }}
     >
       <div
         id="auth-modal-card"
-        className="relative w-full max-w-xl my-8 rounded-3xl bg-brown-900 border border-gold-500/40 shadow-2xl shadow-black/80 overflow-hidden"
+        className="relative w-full max-w-xl my-8 rounded-3xl bg-zinc-950 border border-pink-500/40 shadow-2xl shadow-black overflow-hidden"
       >
         {/* Header Ribbon */}
-        <div className="p-6 pb-4 border-b border-brown-800/80 flex items-center justify-between">
+        <div className="p-6 pb-4 border-b border-zinc-800/80 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-gold-500/20 text-gold-400 border border-gold-500/30 flex items-center justify-center font-black">
+            <div className="w-10 h-10 rounded-2xl bg-pink-500/20 text-pink-400 border border-pink-500/30 flex items-center justify-center font-black">
               PF
             </div>
             <div>
               <h3 className="text-xl font-black text-white flex items-center gap-2">
                 <span>{mode === 'login' ? 'Portal Log In' : 'Create Account'}</span>
-                <span className="text-[11px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-gold-500/20 text-gold-400 border border-gold-500/30">
+                <span className="text-[11px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-pink-500/20 text-pink-400 border border-pink-500/30">
                   Firebase Auth
                 </span>
               </h3>
-              <p className="text-xs text-stone-400">
+              <p className="text-xs text-zinc-400">
                 PulseFit Cloud Authentication &bull; pulsefit-33adf
               </p>
             </div>
@@ -260,7 +260,7 @@ export const AuthModal: React.FC = () => {
           <button
             id="btn-close-auth-modal"
             onClick={closeAuthModal}
-            className="w-8 h-8 rounded-full bg-brown-950 hover:bg-brown-800 text-stone-400 hover:text-white flex items-center justify-center transition-colors cursor-pointer border border-brown-800"
+            className="w-8 h-8 rounded-full bg-black hover:bg-zinc-900 text-zinc-400 hover:text-white flex items-center justify-center transition-colors cursor-pointer border border-zinc-800"
             title="Close"
           >
             <X className="w-4 h-4" />
@@ -270,15 +270,15 @@ export const AuthModal: React.FC = () => {
         {/* Content Body */}
         <div className="p-6 space-y-6 max-h-[80vh] overflow-y-auto">
           {/* Mode Switcher */}
-          <div className="grid grid-cols-2 p-1 rounded-2xl bg-brown-950 border border-brown-800">
+          <div className="grid grid-cols-2 p-1 rounded-2xl bg-black border border-zinc-800">
             <button
               id="tab-auth-login"
               type="button"
               onClick={() => handleSwitchMode('login')}
               className={`py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all cursor-pointer ${
                 mode === 'login'
-                  ? 'bg-gradient-to-r from-gold-500 to-amber-500 text-brown-950 shadow-md'
-                  : 'text-stone-400 hover:text-white'
+                  ? 'bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 text-white shadow-md shadow-pink-500/25'
+                  : 'text-zinc-400 hover:text-white'
               }`}
             >
               Sign In
@@ -289,8 +289,8 @@ export const AuthModal: React.FC = () => {
               onClick={() => handleSwitchMode('register')}
               className={`py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all cursor-pointer ${
                 mode === 'register'
-                  ? 'bg-gradient-to-r from-gold-500 to-amber-500 text-brown-950 shadow-md'
-                  : 'text-stone-400 hover:text-white'
+                  ? 'bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 text-white shadow-md shadow-pink-500/25'
+                  : 'text-zinc-400 hover:text-white'
               }`}
             >
               Registration
@@ -299,7 +299,7 @@ export const AuthModal: React.FC = () => {
 
           {/* Role Selector */}
           <div className="space-y-2">
-            <label className="block text-xs font-mono uppercase tracking-widest text-stone-400">
+            <label className="block text-xs font-mono uppercase tracking-widest text-zinc-400">
               Select Account Role:
             </label>
             <div className="grid grid-cols-3 gap-2">
@@ -309,15 +309,15 @@ export const AuthModal: React.FC = () => {
                 onClick={() => handleRoleSelect('member')}
                 className={`p-3 rounded-2xl border text-left transition-all cursor-pointer flex flex-col items-center sm:items-start gap-1.5 ${
                   selectedRole === 'member'
-                    ? 'bg-gold-500/15 border-gold-500/60 text-white shadow-sm'
-                    : 'bg-brown-950/60 border-brown-800 text-stone-400 hover:border-brown-700 hover:text-stone-200'
+                    ? 'bg-pink-500/15 border-pink-500 text-white shadow-sm shadow-pink-500/15'
+                    : 'bg-black/60 border-zinc-800 text-zinc-400 hover:border-zinc-700 hover:text-zinc-200'
                 }`}
               >
                 <div className="flex items-center gap-1.5">
-                  <Dumbbell className={`w-4 h-4 ${selectedRole === 'member' ? 'text-gold-400' : 'text-stone-400'}`} />
+                  <Dumbbell className={`w-4 h-4 ${selectedRole === 'member' ? 'text-pink-400' : 'text-zinc-400'}`} />
                   <span className="font-bold text-xs">Member</span>
                 </div>
-                <span className="text-[10px] text-stone-400 hidden sm:inline">
+                <span className="text-[10px] text-zinc-400 hidden sm:inline">
                   Athletes & Pass Holders
                 </span>
               </button>
@@ -328,15 +328,15 @@ export const AuthModal: React.FC = () => {
                 onClick={() => handleRoleSelect('trainer')}
                 className={`p-3 rounded-2xl border text-left transition-all cursor-pointer flex flex-col items-center sm:items-start gap-1.5 ${
                   selectedRole === 'trainer'
-                    ? 'bg-gold-500/15 border-gold-500/60 text-white shadow-sm'
-                    : 'bg-brown-950/60 border-brown-800 text-stone-400 hover:border-brown-700 hover:text-stone-200'
+                    ? 'bg-pink-500/15 border-pink-500 text-white shadow-sm shadow-pink-500/15'
+                    : 'bg-black/60 border-zinc-800 text-zinc-400 hover:border-zinc-700 hover:text-zinc-200'
                 }`}
               >
                 <div className="flex items-center gap-1.5">
-                  <Award className={`w-4 h-4 ${selectedRole === 'trainer' ? 'text-gold-400' : 'text-stone-400'}`} />
+                  <Award className={`w-4 h-4 ${selectedRole === 'trainer' ? 'text-pink-400' : 'text-zinc-400'}`} />
                   <span className="font-bold text-xs">Trainer</span>
                 </div>
-                <span className="text-[10px] text-stone-400 hidden sm:inline">
+                <span className="text-[10px] text-zinc-400 hidden sm:inline">
                   Coaches & Instructors
                 </span>
               </button>
@@ -347,15 +347,15 @@ export const AuthModal: React.FC = () => {
                 onClick={() => handleRoleSelect('admin')}
                 className={`p-3 rounded-2xl border text-left transition-all cursor-pointer flex flex-col items-center sm:items-start gap-1.5 ${
                   selectedRole === 'admin'
-                    ? 'bg-gold-500/15 border-gold-500/60 text-white shadow-sm'
-                    : 'bg-brown-950/60 border-brown-800 text-stone-400 hover:border-brown-700 hover:text-stone-200'
+                    ? 'bg-pink-500/15 border-pink-500 text-white shadow-sm shadow-pink-500/15'
+                    : 'bg-black/60 border-zinc-800 text-zinc-400 hover:border-zinc-700 hover:text-zinc-200'
                 }`}
               >
                 <div className="flex items-center gap-1.5">
-                  <Shield className={`w-4 h-4 ${selectedRole === 'admin' ? 'text-gold-400' : 'text-stone-400'}`} />
+                  <Shield className={`w-4 h-4 ${selectedRole === 'admin' ? 'text-pink-400' : 'text-zinc-400'}`} />
                   <span className="font-bold text-xs">Admin</span>
                 </div>
-                <span className="text-[10px] text-stone-400 hidden sm:inline">
+                <span className="text-[10px] text-zinc-400 hidden sm:inline">
                   Gym Management
                 </span>
               </button>
@@ -363,26 +363,26 @@ export const AuthModal: React.FC = () => {
           </div>
 
           {/* Quick Demo Autofill Helpers */}
-          <div className="flex flex-wrap items-center gap-2 pt-1 pb-1 border-b border-brown-800/60">
-            <span className="text-[11px] text-stone-400 font-mono">Quick Autofill:</span>
+          <div className="flex flex-wrap items-center gap-2 pt-1 pb-1 border-b border-zinc-800/80">
+            <span className="text-[11px] text-zinc-400 font-mono">Quick Autofill:</span>
             <button
               type="button"
               onClick={() => fillPreset('member')}
-              className="text-[11px] px-2.5 py-1 rounded-lg bg-brown-950 hover:bg-brown-800 text-stone-300 border border-brown-800 transition-colors cursor-pointer"
+              className="text-[11px] px-2.5 py-1 rounded-lg bg-black hover:bg-zinc-900 text-zinc-300 border border-zinc-800 transition-colors cursor-pointer"
             >
               Demo Member
             </button>
             <button
               type="button"
               onClick={() => fillPreset('trainer')}
-              className="text-[11px] px-2.5 py-1 rounded-lg bg-brown-950 hover:bg-brown-800 text-stone-300 border border-brown-800 transition-colors cursor-pointer"
+              className="text-[11px] px-2.5 py-1 rounded-lg bg-black hover:bg-zinc-900 text-zinc-300 border border-zinc-800 transition-colors cursor-pointer"
             >
               Demo Trainer
             </button>
             <button
               type="button"
               onClick={() => fillPreset('admin')}
-              className="text-[11px] px-2.5 py-1 rounded-lg bg-brown-950 hover:bg-brown-800 text-gold-400 border border-gold-500/30 transition-colors cursor-pointer"
+              className="text-[11px] px-2.5 py-1 rounded-lg bg-black hover:bg-zinc-900 text-pink-400 border border-pink-500/40 transition-colors cursor-pointer"
             >
               Owner Admin (anirudhyad54)
             </button>
@@ -411,11 +411,11 @@ export const AuthModal: React.FC = () => {
             {/* Display Name (Only in Registration) */}
             {mode === 'register' && (
               <div className="space-y-1.5">
-                <label className="block text-xs font-medium text-stone-300">
-                  Full Name / Display Name <span className="text-gold-400">*</span>
+                <label className="block text-xs font-medium text-zinc-300">
+                  Full Name / Display Name <span className="text-pink-500">*</span>
                 </label>
                 <div className="relative">
-                  <UserIcon className="w-4 h-4 text-stone-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                  <UserIcon className="w-4 h-4 text-zinc-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                   <input
                     id="input-auth-name"
                     type="text"
@@ -429,7 +429,7 @@ export const AuthModal: React.FC = () => {
                         ? 'Admin Operations'
                         : 'Alex Rivera'
                     }
-                    className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-brown-950 border border-brown-800 focus:border-gold-500 text-sm text-white placeholder:text-stone-400 outline-none transition-colors"
+                    className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-black border border-zinc-800 focus:border-pink-500 focus:ring-1 focus:ring-pink-500 text-sm text-white placeholder:text-zinc-500 outline-none transition-colors"
                   />
                 </div>
               </div>
@@ -437,11 +437,11 @@ export const AuthModal: React.FC = () => {
 
             {/* Email Field */}
             <div className="space-y-1.5">
-              <label className="block text-xs font-medium text-stone-300">
-                Email Address <span className="text-gold-400">*</span>
+              <label className="block text-xs font-medium text-zinc-300">
+                Email Address <span className="text-pink-500">*</span>
               </label>
               <div className="relative">
-                <Mail className="w-4 h-4 text-stone-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                <Mail className="w-4 h-4 text-zinc-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                 <input
                   id="input-auth-email"
                   type="email"
@@ -449,7 +449,7 @@ export const AuthModal: React.FC = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="name@pulsefit.local"
-                  className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-brown-950 border border-brown-800 focus:border-gold-500 text-sm text-white placeholder:text-stone-400 outline-none transition-colors"
+                  className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-black border border-zinc-800 focus:border-pink-500 focus:ring-1 focus:ring-pink-500 text-sm text-white placeholder:text-zinc-500 outline-none transition-colors"
                 />
               </div>
             </div>
@@ -457,21 +457,21 @@ export const AuthModal: React.FC = () => {
             {/* Password Field */}
             <div className="space-y-1.5">
               <div className="flex items-center justify-between">
-                <label className="block text-xs font-medium text-stone-300">
-                  Password <span className="text-gold-400">*</span>
+                <label className="block text-xs font-medium text-zinc-300">
+                  Password <span className="text-pink-500">*</span>
                 </label>
                 {mode === 'login' && (
                   <button
                     type="button"
                     onClick={handleForgotPassword}
-                    className="text-[11px] text-gold-400 hover:text-gold-300 transition-colors cursor-pointer"
+                    className="text-[11px] text-pink-400 hover:text-pink-300 transition-colors cursor-pointer"
                   >
                     Forgot password?
                   </button>
                 )}
               </div>
               <div className="relative">
-                <Lock className="w-4 h-4 text-stone-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                <Lock className="w-4 h-4 text-zinc-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                 <input
                   id="input-auth-password"
                   type={showPassword ? 'text' : 'password'}
@@ -479,12 +479,12 @@ export const AuthModal: React.FC = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Minimum 6 characters"
-                  className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-brown-950 border border-brown-800 focus:border-gold-500 text-sm text-white placeholder:text-stone-400 outline-none transition-colors"
+                  className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-black border border-zinc-800 focus:border-pink-500 focus:ring-1 focus:ring-pink-500 text-sm text-white placeholder:text-zinc-500 outline-none transition-colors"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-200 transition-colors cursor-pointer"
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-200 transition-colors cursor-pointer"
                   title={showPassword ? 'Hide password' : 'Show password'}
                 >
                   {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
@@ -494,35 +494,35 @@ export const AuthModal: React.FC = () => {
 
             {/* Dynamic Registration Fields for Member */}
             {mode === 'register' && selectedRole === 'member' && (
-              <div className="space-y-3 pt-2 border-t border-brown-800/80">
+              <div className="space-y-3 pt-2 border-t border-zinc-800/80">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div className="space-y-1.5">
-                    <label className="block text-xs font-medium text-stone-300">
+                    <label className="block text-xs font-medium text-zinc-300">
                       Contact Phone
                     </label>
                     <div className="relative">
-                      <Phone className="w-4 h-4 text-stone-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                      <Phone className="w-4 h-4 text-zinc-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                       <input
                         type="tel"
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                         placeholder="(555) 123-4567"
-                        className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-brown-950 border border-brown-800 focus:border-gold-500 text-sm text-white placeholder:text-stone-400 outline-none transition-colors"
+                        className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-black border border-zinc-800 focus:border-pink-500 text-sm text-white placeholder:text-zinc-500 outline-none transition-colors"
                       />
                     </div>
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="block text-xs font-medium text-stone-300">
+                    <label className="block text-xs font-medium text-zinc-300">
                       Membership Tier
                     </label>
                     <select
                       value={membershipTier}
                       onChange={(e) => setMembershipTier(e.target.value)}
-                      className="w-full px-3 py-2.5 rounded-xl bg-brown-950 border border-brown-800 focus:border-gold-500 text-sm text-white outline-none transition-colors"
+                      className="w-full px-3 py-2.5 rounded-xl bg-black border border-zinc-800 focus:border-pink-500 text-sm text-white outline-none transition-colors"
                     >
                       {MEMBERSHIP_PLANS.map((plan) => (
-                        <option key={plan.id} value={plan.name} className="bg-brown-950 text-white">
+                        <option key={plan.id} value={plan.name} className="bg-black text-white">
                           {plan.name} (${plan.price}/mo)
                         </option>
                       ))}
@@ -531,17 +531,17 @@ export const AuthModal: React.FC = () => {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="block text-xs font-medium text-stone-300">
+                  <label className="block text-xs font-medium text-zinc-300">
                     Primary Fitness Goal
                   </label>
                   <div className="relative">
-                    <Target className="w-4 h-4 text-stone-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                    <Target className="w-4 h-4 text-zinc-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                     <input
                       type="text"
                       value={fitnessGoal}
                       onChange={(e) => setFitnessGoal(e.target.value)}
                       placeholder="e.g. Muscle Gain, Conditioning, Marathon Prep"
-                      className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-brown-950 border border-brown-800 focus:border-gold-500 text-sm text-white placeholder:text-stone-400 outline-none transition-colors"
+                      className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-black border border-zinc-800 focus:border-pink-500 text-sm text-white placeholder:text-zinc-500 outline-none transition-colors"
                     />
                   </div>
                 </div>
@@ -550,26 +550,26 @@ export const AuthModal: React.FC = () => {
 
             {/* Dynamic Registration Fields for Trainer */}
             {mode === 'register' && selectedRole === 'trainer' && (
-              <div className="space-y-3 pt-2 border-t border-brown-800/80">
+              <div className="space-y-3 pt-2 border-t border-zinc-800/80">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div className="space-y-1.5">
-                    <label className="block text-xs font-medium text-stone-300">
+                    <label className="block text-xs font-medium text-zinc-300">
                       Core Specialization
                     </label>
                     <div className="relative">
-                      <Briefcase className="w-4 h-4 text-stone-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                      <Briefcase className="w-4 h-4 text-zinc-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                       <input
                         type="text"
                         value={specialization}
                         onChange={(e) => setSpecialization(e.target.value)}
                         placeholder="Strength & Conditioning"
-                        className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-brown-950 border border-brown-800 focus:border-gold-500 text-sm text-white placeholder:text-stone-400 outline-none transition-colors"
+                        className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-black border border-zinc-800 focus:border-pink-500 text-sm text-white placeholder:text-zinc-500 outline-none transition-colors"
                       />
                     </div>
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="block text-xs font-medium text-stone-300">
+                    <label className="block text-xs font-medium text-zinc-300">
                       Experience (Years)
                     </label>
                     <input
@@ -578,13 +578,13 @@ export const AuthModal: React.FC = () => {
                       max={40}
                       value={experienceYears}
                       onChange={(e) => setExperienceYears(parseInt(e.target.value) || 1)}
-                      className="w-full px-3 py-2.5 rounded-xl bg-brown-950 border border-brown-800 focus:border-gold-500 text-sm text-white outline-none transition-colors"
+                      className="w-full px-3 py-2.5 rounded-xl bg-black border border-zinc-800 focus:border-pink-500 text-sm text-white outline-none transition-colors"
                     />
                   </div>
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="block text-xs font-medium text-stone-300">
+                  <label className="block text-xs font-medium text-zinc-300">
                     Coach Bio / Philosophy
                   </label>
                   <textarea
@@ -592,7 +592,7 @@ export const AuthModal: React.FC = () => {
                     value={bio}
                     onChange={(e) => setBio(e.target.value)}
                     placeholder="Brief intro for athlete roster..."
-                    className="w-full px-3 py-2 rounded-xl bg-brown-950 border border-brown-800 focus:border-gold-500 text-xs text-white placeholder:text-stone-400 outline-none transition-colors resize-none"
+                    className="w-full px-3 py-2 rounded-xl bg-black border border-zinc-800 focus:border-pink-500 text-xs text-white placeholder:text-zinc-500 outline-none transition-colors resize-none"
                   />
                 </div>
               </div>
@@ -600,29 +600,29 @@ export const AuthModal: React.FC = () => {
 
             {/* Dynamic Registration Fields for Admin */}
             {mode === 'register' && selectedRole === 'admin' && (
-              <div className="space-y-3 pt-2 border-t border-brown-800/80">
-                <div className="p-3 rounded-xl bg-gold-500/10 border border-gold-500/30 text-gold-300 text-xs space-y-1">
+              <div className="space-y-3 pt-2 border-t border-zinc-800/80">
+                <div className="p-3 rounded-xl bg-pink-500/10 border border-pink-500/30 text-pink-300 text-xs space-y-1">
                   <p className="font-bold flex items-center gap-1.5">
-                    <Shield className="w-3.5 h-3.5 text-gold-400" />
+                    <Shield className="w-3.5 h-3.5 text-pink-400" />
                     <span>Administrative Clearance Protection</span>
                   </p>
-                  <p className="text-stone-300 text-[11px]">
-                    Project owner email (<span className="text-gold-400 font-mono">anirudhyad54@gmail.com</span>) is pre-authorized. For other administrative accounts, provide the admin setup passcode.
+                  <p className="text-zinc-300 text-[11px]">
+                    Project owner email (<span className="text-pink-400 font-mono">anirudhyad54@gmail.com</span>) is pre-authorized. For other administrative accounts, provide the admin setup passcode.
                   </p>
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="block text-xs font-medium text-stone-300">
-                    Admin Passcode <span className="text-gold-400">*</span>
+                  <label className="block text-xs font-medium text-zinc-300">
+                    Admin Passcode <span className="text-pink-500">*</span>
                   </label>
                   <div className="relative">
-                    <KeyRound className="w-4 h-4 text-stone-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                    <KeyRound className="w-4 h-4 text-zinc-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                     <input
                       type="text"
                       value={adminPasscode}
                       onChange={(e) => setAdminPasscode(e.target.value)}
                       placeholder="PULSEFIT_ADMIN_2025"
-                      className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-brown-950 border border-brown-800 focus:border-gold-500 text-sm text-white placeholder:text-stone-400 font-mono outline-none transition-colors"
+                      className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-black border border-zinc-800 focus:border-pink-500 text-sm text-white placeholder:text-zinc-500 font-mono outline-none transition-colors"
                     />
                   </div>
                 </div>
@@ -634,7 +634,7 @@ export const AuthModal: React.FC = () => {
               id="btn-submit-auth"
               type="submit"
               disabled={isLoading}
-              className="w-full py-3.5 rounded-xl bg-gradient-to-r from-gold-500 to-amber-500 hover:from-gold-400 hover:to-amber-400 disabled:opacity-60 text-brown-950 font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-gold-500/20 transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer"
+              className="w-full py-3.5 rounded-xl bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 hover:from-pink-400 hover:to-rose-500 disabled:opacity-60 text-white font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-pink-500/25 transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer"
             >
               {isLoading ? (
                 <>
@@ -659,10 +659,10 @@ export const AuthModal: React.FC = () => {
           {/* Social / Google Auth Section */}
           <div className="relative py-2">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-brown-800" />
+              <div className="w-full border-t border-zinc-800" />
             </div>
             <div className="relative flex justify-center text-xs">
-              <span className="px-3 bg-brown-900 text-stone-400 font-mono text-[11px]">
+              <span className="px-3 bg-zinc-950 text-zinc-400 font-mono text-[11px]">
                 OR CONTINUE WITH
               </span>
             </div>
@@ -673,7 +673,7 @@ export const AuthModal: React.FC = () => {
             type="button"
             onClick={handleGoogleSignIn}
             disabled={isLoading}
-            className="w-full py-2.5 rounded-xl bg-brown-950 hover:bg-brown-800 border border-brown-800 hover:border-gold-500/40 text-stone-200 font-semibold text-xs flex items-center justify-center gap-2.5 transition-all cursor-pointer disabled:opacity-50"
+            className="w-full py-2.5 rounded-xl bg-black hover:bg-zinc-900 border border-zinc-800 hover:border-pink-500/40 text-zinc-200 font-semibold text-xs flex items-center justify-center gap-2.5 transition-all cursor-pointer disabled:opacity-50"
           >
             <svg className="w-4 h-4" viewBox="0 0 24 24">
               <path
@@ -698,9 +698,9 @@ export const AuthModal: React.FC = () => {
         </div>
 
         {/* Footer info */}
-        <div className="px-6 py-3 bg-brown-950/60 border-t border-brown-800/80 flex items-center justify-between text-[11px] text-stone-400">
+        <div className="px-6 py-3 bg-black/60 border-t border-zinc-800/80 flex items-center justify-between text-[11px] text-zinc-400">
           <div className="flex items-center gap-1.5 font-mono">
-            <Sparkles className="w-3 h-3 text-gold-400" />
+            <Sparkles className="w-3 h-3 text-pink-400" />
             <span>Role-Based Access Control</span>
           </div>
           <div>
@@ -710,7 +710,7 @@ export const AuthModal: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => handleSwitchMode('register')}
-                  className="text-gold-400 font-bold hover:underline cursor-pointer"
+                  className="text-pink-400 font-bold hover:underline cursor-pointer"
                 >
                   Register
                 </button>
@@ -721,7 +721,7 @@ export const AuthModal: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => handleSwitchMode('login')}
-                  className="text-gold-400 font-bold hover:underline cursor-pointer"
+                  className="text-pink-400 font-bold hover:underline cursor-pointer"
                 >
                   Sign In
                 </button>

@@ -135,19 +135,19 @@ export const EnrollmentForm: React.FC<EnrollmentFormProps> = ({
   const selectedSlotObj = slots.find((s) => s.id === formData.preferredSlotId);
 
   return (
-    <section id="enrollment-section" className="py-20 bg-brown-950 relative">
+    <section id="enrollment-section" className="py-20 bg-black relative">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center mb-12 space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brown-900 border border-brown-700 text-xs font-semibold text-gold-400">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900 border border-pink-500/40 text-xs font-semibold text-pink-400 shadow-sm shadow-pink-500/10">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Fast Digital Enrollment</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-black tracking-tight text-white">
             Register Your Membership
           </h2>
-          <p className="text-sm sm:text-base text-stone-400 max-w-xl mx-auto">
+          <p className="text-sm sm:text-base text-zinc-400 max-w-xl mx-auto">
             Complete your enrollment details below. Your workout slot and coach preference will be
             instantly synced into the portal.
           </p>
@@ -159,58 +159,58 @@ export const EnrollmentForm: React.FC<EnrollmentFormProps> = ({
         {isSubmitted && submittedData ? (
           <div
             id="enrollment-success-banner"
-            className="rounded-3xl border border-gold-500/50 bg-gradient-to-b from-brown-900 via-brown-950 to-brown-950 p-8 sm:p-10 shadow-2xl shadow-gold-950/30 space-y-8 animate-in zoom-in-95 duration-300"
+            className="rounded-3xl border border-pink-500/50 bg-gradient-to-b from-zinc-900 via-zinc-950 to-black p-8 sm:p-10 shadow-2xl shadow-pink-500/20 space-y-8 animate-in zoom-in-95 duration-300"
           >
             {/* Top Success Badge */}
             <div className="flex flex-col items-center text-center space-y-4">
-              <div className="w-16 h-16 rounded-full bg-gold-500/20 text-gold-400 border border-gold-500/40 flex items-center justify-center">
+              <div className="w-16 h-16 rounded-full bg-pink-500/20 text-pink-400 border border-pink-500/40 flex items-center justify-center">
                 <CheckCircle2 className="w-10 h-10" />
               </div>
               <div className="space-y-2">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brown-900 border border-gold-500/40 text-gold-400 text-xs font-mono">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black border border-pink-500/40 text-pink-400 text-xs font-mono">
                   <Database className="w-3.5 h-3.5" />
                   <span>REQUEST ID: {confirmationCode}</span>
                 </div>
                 <h3 className="text-2xl sm:text-3xl font-black text-white">
                   Welcome to the Club, {submittedData.fullName}!
                 </h3>
-                <p className="text-sm text-stone-400 max-w-md">
+                <p className="text-sm text-zinc-400 max-w-md">
                   Your registration has been securely synchronized with Cloud Firestore in the{' '}
-                  <span className="text-gold-400 font-mono">enrollment_requests</span> collection. Show this ID at reception on your first workout.
+                  <span className="text-pink-400 font-mono">enrollment_requests</span> collection. Show this ID at reception on your first workout.
                 </p>
               </div>
             </div>
 
             {/* Summary Review Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-5 rounded-2xl bg-brown-900/80 border border-brown-800 text-sm">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-5 rounded-2xl bg-zinc-900/80 border border-zinc-800 text-sm">
               <div className="space-y-1">
-                <span className="text-xs text-stone-400 uppercase font-mono">Member Name</span>
+                <span className="text-xs text-zinc-400 uppercase font-mono">Member Name</span>
                 <div className="font-bold text-white">{submittedData.fullName}</div>
               </div>
 
               <div className="space-y-1">
-                <span className="text-xs text-stone-400 uppercase font-mono">Membership Tier</span>
-                <div className="font-bold text-gold-400">{submittedData.membershipPlan} Tier</div>
+                <span className="text-xs text-zinc-400 uppercase font-mono">Membership Tier</span>
+                <div className="font-bold text-pink-400">{submittedData.membershipPlan} Tier</div>
               </div>
 
               <div className="space-y-1">
-                <span className="text-xs text-stone-400 uppercase font-mono">Assigned Coach</span>
+                <span className="text-xs text-zinc-400 uppercase font-mono">Assigned Coach</span>
                 <div className="font-bold text-white">
                   {trainers.find((t) => t.id === submittedData.preferredTrainerId)?.name || 'First Available Coach'}
                 </div>
               </div>
 
               <div className="space-y-1">
-                <span className="text-xs text-stone-400 uppercase font-mono">Workout Slot</span>
+                <span className="text-xs text-zinc-400 uppercase font-mono">Workout Slot</span>
                 <div className="font-bold text-white">
                   {slots.find((s) => s.id === submittedData.preferredSlotId)?.label} (
                   {slots.find((s) => s.id === submittedData.preferredSlotId)?.time})
                 </div>
               </div>
 
-              <div className="space-y-1 sm:col-span-2 pt-2 border-t border-brown-800">
-                <span className="text-xs text-stone-400 uppercase font-mono">Contact Details</span>
-                <div className="text-stone-300">
+              <div className="space-y-1 sm:col-span-2 pt-2 border-t border-zinc-800">
+                <span className="text-xs text-zinc-400 uppercase font-mono">Contact Details</span>
+                <div className="text-zinc-300">
                   {submittedData.email} • {submittedData.phone}
                 </div>
               </div>
@@ -221,7 +221,7 @@ export const EnrollmentForm: React.FC<EnrollmentFormProps> = ({
               <button
                 id="btn-view-portal-preview"
                 onClick={onViewDashboard}
-                className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-gradient-to-r from-gold-500 to-amber-500 hover:from-gold-400 hover:to-amber-400 text-brown-950 font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-gold-500/25 cursor-pointer"
+                className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 hover:from-pink-400 hover:to-rose-500 text-white font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-pink-500/30 cursor-pointer"
               >
                 <span>View Dashboard Preview</span>
                 <ArrowRight className="w-4 h-4" />
@@ -230,7 +230,7 @@ export const EnrollmentForm: React.FC<EnrollmentFormProps> = ({
               <button
                 id="btn-register-another-member"
                 onClick={handleReset}
-                className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-brown-900 hover:bg-brown-850 text-stone-300 font-semibold text-sm border border-brown-700 flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-zinc-300 font-semibold text-sm border border-zinc-700 flex items-center justify-center gap-2 cursor-pointer"
               >
                 <RotateCcw className="w-4 h-4" />
                 <span>Register Another Member</span>
@@ -245,15 +245,15 @@ export const EnrollmentForm: React.FC<EnrollmentFormProps> = ({
             id="gym-enrollment-form"
             onSubmit={handleSubmit}
             noValidate
-            className="rounded-3xl border border-brown-800 bg-brown-900/60 p-6 sm:p-10 shadow-xl space-y-6"
+            className="rounded-3xl border border-zinc-800 bg-zinc-900/60 p-6 sm:p-10 shadow-xl space-y-6"
           >
             {/* Form Section Title */}
-            <div className="border-b border-brown-800 pb-4 flex items-center justify-between">
+            <div className="border-b border-zinc-800 pb-4 flex items-center justify-between">
               <div>
                 <h3 className="text-lg font-bold text-white">Member Application Form</h3>
-                <p className="text-xs text-stone-400">All fields marked with an asterisk (*) are required.</p>
+                <p className="text-xs text-zinc-400">All fields marked with an asterisk (*) are required.</p>
               </div>
-              <span className="text-xs font-mono text-stone-400 bg-brown-950 px-2.5 py-1 rounded border border-brown-800">
+              <span className="text-xs font-mono text-zinc-400 bg-black px-2.5 py-1 rounded border border-zinc-800">
                 PORTAL-FORM-V1
               </span>
             </div>
@@ -263,11 +263,11 @@ export const EnrollmentForm: React.FC<EnrollmentFormProps> = ({
               
               {/* Full Name */}
               <div className="space-y-2">
-                <label htmlFor="input-fullName" className="block text-xs font-bold text-stone-300 uppercase tracking-wider">
+                <label htmlFor="input-fullName" className="block text-xs font-bold text-zinc-300 uppercase tracking-wider">
                   Full Name *
                 </label>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-stone-500">
+                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-zinc-500">
                     <User className="w-4 h-4" />
                   </div>
                   <input
@@ -276,10 +276,10 @@ export const EnrollmentForm: React.FC<EnrollmentFormProps> = ({
                     placeholder="e.g. Jordan Miller"
                     value={formData.fullName}
                     onChange={(e) => onChangeForm({ fullName: e.target.value })}
-                    className={`w-full pl-10 pr-4 py-3 rounded-xl bg-brown-950 text-white text-sm border focus:outline-none transition-colors ${
+                    className={`w-full pl-10 pr-4 py-3 rounded-xl bg-black text-white text-sm border focus:outline-none transition-colors ${
                       errors.fullName
                         ? 'border-red-500 focus:border-red-500'
-                        : 'border-brown-800 focus:border-gold-500 focus:ring-1 focus:ring-gold-500'
+                        : 'border-zinc-800 focus:border-pink-500 focus:ring-1 focus:ring-pink-500'
                     }`}
                   />
                 </div>
@@ -293,11 +293,11 @@ export const EnrollmentForm: React.FC<EnrollmentFormProps> = ({
 
               {/* Email Address */}
               <div className="space-y-2">
-                <label htmlFor="input-email" className="block text-xs font-bold text-stone-300 uppercase tracking-wider">
+                <label htmlFor="input-email" className="block text-xs font-bold text-zinc-300 uppercase tracking-wider">
                   Email Address *
                 </label>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-stone-500">
+                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-zinc-500">
                     <Mail className="w-4 h-4" />
                   </div>
                   <input
@@ -306,10 +306,10 @@ export const EnrollmentForm: React.FC<EnrollmentFormProps> = ({
                     placeholder="e.g. jordan@example.com"
                     value={formData.email}
                     onChange={(e) => onChangeForm({ email: e.target.value })}
-                    className={`w-full pl-10 pr-4 py-3 rounded-xl bg-brown-950 text-white text-sm border focus:outline-none transition-colors ${
+                    className={`w-full pl-10 pr-4 py-3 rounded-xl bg-black text-white text-sm border focus:outline-none transition-colors ${
                       errors.email
                         ? 'border-red-500 focus:border-red-500'
-                        : 'border-brown-800 focus:border-gold-500 focus:ring-1 focus:ring-gold-500'
+                        : 'border-zinc-800 focus:border-pink-500 focus:ring-1 focus:ring-pink-500'
                     }`}
                   />
                 </div>
@@ -323,11 +323,11 @@ export const EnrollmentForm: React.FC<EnrollmentFormProps> = ({
 
               {/* Phone Number */}
               <div className="space-y-2">
-                <label htmlFor="input-phone" className="block text-xs font-bold text-stone-300 uppercase tracking-wider">
+                <label htmlFor="input-phone" className="block text-xs font-bold text-zinc-300 uppercase tracking-wider">
                   Phone Number *
                 </label>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-stone-500">
+                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-zinc-500">
                     <Phone className="w-4 h-4" />
                   </div>
                   <input
@@ -336,10 +336,10 @@ export const EnrollmentForm: React.FC<EnrollmentFormProps> = ({
                     placeholder="e.g. (555) 234-5678"
                     value={formData.phone}
                     onChange={(e) => onChangeForm({ phone: e.target.value })}
-                    className={`w-full pl-10 pr-4 py-3 rounded-xl bg-brown-950 text-white text-sm border focus:outline-none transition-colors ${
+                    className={`w-full pl-10 pr-4 py-3 rounded-xl bg-black text-white text-sm border focus:outline-none transition-colors ${
                       errors.phone
                         ? 'border-red-500 focus:border-red-500'
-                        : 'border-brown-800 focus:border-gold-500 focus:ring-1 focus:ring-gold-500'
+                        : 'border-zinc-800 focus:border-pink-500 focus:ring-1 focus:ring-pink-500'
                     }`}
                   />
                 </div>
@@ -353,7 +353,7 @@ export const EnrollmentForm: React.FC<EnrollmentFormProps> = ({
 
               {/* Membership Plan Selection */}
               <div className="space-y-2">
-                <label htmlFor="select-membershipPlan" className="block text-xs font-bold text-stone-300 uppercase tracking-wider">
+                <label htmlFor="select-membershipPlan" className="block text-xs font-bold text-zinc-300 uppercase tracking-wider">
                   Membership Plan *
                 </label>
                 <div className="relative">
@@ -361,7 +361,7 @@ export const EnrollmentForm: React.FC<EnrollmentFormProps> = ({
                     id="select-membershipPlan"
                     value={formData.membershipPlan}
                     onChange={(e) => onChangeForm({ membershipPlan: e.target.value as MembershipTier })}
-                    className="w-full px-4 py-3 rounded-xl bg-brown-950 text-white text-sm border border-brown-800 focus:border-gold-500 focus:ring-1 focus:ring-gold-500 focus:outline-none"
+                    className="w-full px-4 py-3 rounded-xl bg-black text-white text-sm border border-zinc-800 focus:border-pink-500 focus:ring-1 focus:ring-pink-500 focus:outline-none"
                   >
                     <option value="Basic">Basic Plan ($29/month)</option>
                     <option value="Premium">Premium Plan ($59/month) — Recommended</option>
@@ -383,14 +383,14 @@ export const EnrollmentForm: React.FC<EnrollmentFormProps> = ({
               
               {/* Preferred Coach */}
               <div className="space-y-2">
-                <label htmlFor="select-preferredTrainer" className="block text-xs font-bold text-stone-300 uppercase tracking-wider">
+                <label htmlFor="select-preferredTrainer" className="block text-xs font-bold text-zinc-300 uppercase tracking-wider">
                   Preferred Trainer / Coach
                 </label>
                 <select
                   id="select-preferredTrainer"
                   value={formData.preferredTrainerId}
                   onChange={(e) => onChangeForm({ preferredTrainerId: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl bg-brown-950 text-white text-sm border border-brown-800 focus:border-gold-500 focus:ring-1 focus:ring-gold-500 focus:outline-none"
+                  className="w-full px-4 py-3 rounded-xl bg-black text-white text-sm border border-zinc-800 focus:border-pink-500 focus:ring-1 focus:ring-pink-500 focus:outline-none"
                 >
                   <option value="">No preference (Auto-assign available coach)</option>
                   {trainers.map((trainer) => (
@@ -399,24 +399,24 @@ export const EnrollmentForm: React.FC<EnrollmentFormProps> = ({
                     </option>
                   ))}
                 </select>
-                <p className="text-[11px] text-stone-400">
+                <p className="text-[11px] text-zinc-400">
                   {selectedTrainerObj ? `Selected: ${selectedTrainerObj.name} — ${selectedTrainerObj.availability}` : 'You can switch coaches anytime in the portal.'}
                 </p>
               </div>
 
               {/* Preferred Workout Slot */}
               <div className="space-y-2">
-                <label htmlFor="select-workoutSlot" className="block text-xs font-bold text-stone-300 uppercase tracking-wider">
+                <label htmlFor="select-workoutSlot" className="block text-xs font-bold text-zinc-300 uppercase tracking-wider">
                   Preferred Workout Slot *
                 </label>
                 <select
                   id="select-workoutSlot"
                   value={formData.preferredSlotId}
                   onChange={(e) => onChangeForm({ preferredSlotId: e.target.value })}
-                  className={`w-full px-4 py-3 rounded-xl bg-brown-950 text-white text-sm border focus:outline-none transition-colors ${
+                  className={`w-full px-4 py-3 rounded-xl bg-black text-white text-sm border focus:outline-none transition-colors ${
                     errors.preferredSlotId
                       ? 'border-red-500 focus:border-red-500'
-                      : 'border-brown-800 focus:border-gold-500 focus:ring-1 focus:ring-gold-500'
+                      : 'border-zinc-800 focus:border-pink-500 focus:ring-1 focus:ring-pink-500'
                   }`}
                 >
                   <option value="">Choose your primary training time</option>
@@ -432,7 +432,7 @@ export const EnrollmentForm: React.FC<EnrollmentFormProps> = ({
                     <span>{errors.preferredSlotId}</span>
                   </p>
                 ) : (
-                  <p className="text-[11px] text-stone-400">
+                  <p className="text-[11px] text-zinc-400">
                     Slots guarantee uncrowded floor access and locker reservation.
                   </p>
                 )}
@@ -442,15 +442,15 @@ export const EnrollmentForm: React.FC<EnrollmentFormProps> = ({
 
             {/* Optional Fitness Goal */}
             <div className="space-y-2 pt-2">
-              <label htmlFor="select-fitnessGoal" className="block text-xs font-bold text-stone-300 uppercase tracking-wider flex items-center gap-1.5">
-                <Target className="w-3.5 h-3.5 text-gold-400" />
+              <label htmlFor="select-fitnessGoal" className="block text-xs font-bold text-zinc-300 uppercase tracking-wider flex items-center gap-1.5">
+                <Target className="w-3.5 h-3.5 text-pink-400" />
                 <span>Primary Fitness Goal (Optional)</span>
               </label>
               <select
                 id="select-fitnessGoal"
                 value={formData.fitnessGoal}
                 onChange={(e) => onChangeForm({ fitnessGoal: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl bg-brown-950 text-white text-sm border border-brown-800 focus:border-gold-500 focus:ring-1 focus:ring-gold-500 focus:outline-none"
+                className="w-full px-4 py-3 rounded-xl bg-black text-white text-sm border border-zinc-800 focus:border-pink-500 focus:ring-1 focus:ring-pink-500 focus:outline-none"
               >
                 <option value="Muscle Gain & Strength">Muscle Gain & Hypertrophy</option>
                 <option value="Fat Loss & Conditioning">Fat Loss & Metabolic Conditioning</option>
@@ -461,17 +461,17 @@ export const EnrollmentForm: React.FC<EnrollmentFormProps> = ({
             </div>
 
             {/* Action Bar */}
-            <div className="pt-4 border-t border-brown-800 flex flex-col sm:flex-row items-center justify-between gap-4">
-              <div className="text-xs text-stone-400 text-center sm:text-left flex items-center gap-2">
-                <Database className="w-4 h-4 text-gold-400 shrink-0" />
-                <span>Synchronized with Firestore: <strong className="text-stone-300 font-mono">pulsefit-33adf (default)</strong></span>
+            <div className="pt-4 border-t border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="text-xs text-zinc-400 text-center sm:text-left flex items-center gap-2">
+                <Database className="w-4 h-4 text-pink-400 shrink-0" />
+                <span>Synchronized with Firestore: <strong className="text-zinc-300 font-mono">pulsefit-33adf (default)</strong></span>
               </div>
 
               <button
                 type="submit"
                 id="btn-complete-enrollment"
                 disabled={isSubmitting}
-                className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-gold-500 to-amber-500 hover:from-gold-400 hover:to-amber-400 disabled:opacity-60 text-brown-950 font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-gold-500/25 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+                className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 hover:from-pink-400 hover:to-rose-500 disabled:opacity-60 text-white font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-pink-500/30 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
               >
                 {isSubmitting ? (
                   <>

@@ -1,17 +1,56 @@
 @import "tailwindcss";
 
 @theme {
-  --color-gold-300: #fde68a;
-  --color-gold-400: #fbbf24;
-  --color-gold-500: #f59e0b;
-  --color-gold-600: #d97706;
-  --color-gold-700: #b45309;
+  --color-pink-50: #fdf2f8;
+  --color-pink-100: #fce7f3;
+  --color-pink-200: #fbcfe8;
+  --color-pink-300: #f9a8d4;
+  --color-pink-400: #f472b6;
+  --color-pink-500: #ec4899;
+  --color-pink-600: #db2777;
+  --color-pink-700: #be185d;
+  --color-pink-800: #9d174d;
+  --color-pink-900: #831843;
+  --color-pink-950: #500724;
 
-  --color-brown-950: #120d0a;
-  --color-brown-900: #1d1510;
-  --color-brown-850: #271c16;
-  --color-brown-800: #38281f;
-  --color-brown-700: #4f392c;
-  --color-brown-600: #71523f;
-  --color-brown-500: #936b53;
+  --color-onyx-950: #000000;
+  --color-onyx-900: #09090b;
+  --color-onyx-850: #121215;
+  --color-onyx-800: #1d1d23;
+  --color-onyx-700: #2b2b35;
+
+  /* Aliasing previous theme tokens to pink & black */
+  --color-gold-300: #fbcfe8;
+  --color-gold-400: #f472b6;
+  --color-gold-500: #ec4899;
+  --color-gold-600: #db2777;
+  --color-gold-700: #be185d;
+
+  --color-brown-950: #000000;
+  --color-brown-900: #09090b;
+  --color-brown-850: #121215;
+  --color-brown-800: #1d1d23;
+  --color-brown-700: #2b2b35;
+  --color-brown-600: #3f3f4e;
+  --color-brown-500: #717182;
+}
+
+body {
+  background-color: #000000;
+  color: #fafafa;
+}
+
+/* Custom scrollbar for sleek black & pink feel */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #09090b;
+}
+::-webkit-scrollbar-thumb {
+  background: #db2777;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ec4899;
 }
