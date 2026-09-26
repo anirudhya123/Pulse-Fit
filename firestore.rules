@@ -1,0 +1,172 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Default-deny catch-all safety net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helper functions
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isSignedIn() && (
+        request.auth.token.email == 'anirudhyad54@gmail.com' ||
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid)) ||
+        (exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+         get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin')
+      );
+    }
+
+    function isOwner(uid) {
+      return isSignedIn() && request.auth.uid == uid;
+    }
+
+    // Entity Validation Helpers
+    function isValidUser(data) {
+      return data.uid is string && data.uid.size() <= 128 &&
+             data.display_name is string && data.display_name.size() <= 100 &&
+             data.email is string && data.email.size() <= 120 &&
+             data.role in ['member', 'trainer', 'admin'] &&
+             data.active_status is bool;
+    }
+
+    function isValidMember(data) {
+      return data.member_id is string && data.member_id.size() <= 128 &&
+             data.full_name is string && data.full_name.size() >= 2 && data.full_name.size() <= 100 &&
+             data.authentication_email_source is string && data.authentication_email_source.size() <= 120 &&
+             data.contact_phone_string is string && data.contact_phone_string.size() <= 30 &&
+             data.selected_membership_tier is string && data.selected_membership_tier.size() <= 64 &&
+             data.baseline_attendance_active_status_boolean is bool;
+    }
+
+    function isValidTrainer(data) {
+      return data.trainer_id is string && data.trainer_id.size() <= 128 &&
+             data.certified_coach_display_name is string && data.certified_coach_display_name.size() <= 100 &&
+             data.core_specialization_tags is list && data.core_specialization_tags.size() <= 20 &&
+             data.assigned_workout_slots_arrays is list && data.assigned_workout_slots_arrays.size() <= 50 &&
+             data.maximum_capacity_limits is number && data.maximum_capacity_limits >= 0 &&
+             data.tracking_status_activity_flag is bool;
+    }
+
+    function isValidMembershipPlan(data) {
+      return data.plan_id is string && data.plan_id.size() <= 64 &&
+             data.package_title_string is string && data.package_title_string.size() <= 50 &&
+             data.tier_pricing_rate_value is number && data.tier_pricing_rate_value >= 0 &&
+             data.expiration_cycle_duration_months is number && data.expiration_cycle_duration_months > 0 &&
+             data.feature_entitlements_list_arrays is list && data.feature_entitlements_list_arrays.size() <= 30;
+    }
+
+    function isValidAnnouncement(data) {
+      return data.announcement_id is string && data.announcement_id.size() <= 128 &&
+             data.warning_alert_message_body is string && data.warning_alert_message_body.size() <= 1000 &&
+             data.publisher_clearance_level_role is string && data.publisher_clearance_level_role.size() <= 50 &&
+             data.baseline_visibility_scope_flag is bool;
+    }
+
+    function isValidEnrollmentRequest(data) {
+      return data.request_id is string && data.request_id.size() <= 128 &&
+             data.full_name is string && data.full_name.size() >= 2 && data.full_name.size() <= 100 &&
+             data.contact_email is string && data.contact_email.size() <= 120 &&
+             data.contact_phone_string is string && data.contact_phone_string.size() <= 30 &&
+             data.selected_membership_plan_id is string && data.selected_membership_plan_id.size() <= 64 &&
+             data.validation_status in ['submitted', 'validated', 'under_review', 'approved', 'rejected'];
+    }
+
+    // 1. Users Collection
+    match /users/{userId} {
+      allow get: if isValidId(userId) && (isOwner(userId) || isAdmin());
+      allow list: if isAdmin();
+      allow create: if isValidId(userId) && isOwner(userId) && isValidUser(incoming()) && (
+        incoming().role in ['member', 'trainer'] ||
+        (incoming().role == 'admin' && (request.auth.token.email == 'anirudhyad54@gmail.com' || isAdmin()))
+      );
+      allow update: if isValidId(userId) && isValidUser(incoming()) && (
+        isAdmin() ||
+        (isOwner(userId) && incoming().diff(existing()).affectedKeys().hasOnly(['display_name', 'updated_at']))
+      );
+      allow delete: if isAdmin();
+    }
+
+    // 2. Members Collection
+    match /members/{memberId} {
+      allow get: if isValidId(memberId) && (isOwner(memberId) || isAdmin());
+      allow list: if isAdmin();
+      allow create: if isValidId(memberId) && (
+        isAdmin() ||
+        (isOwner(memberId) && isValidMember(incoming()) && incoming().member_id == request.auth.uid)
+      );
+      allow update: if isValidId(memberId) && isValidMember(incoming()) && (
+        isAdmin() ||
+        (isOwner(memberId) && incoming().member_id == existing().member_id &&
+         incoming().diff(existing()).affectedKeys().hasOnly(['full_name', 'contact_phone_string', 'updated_at', 'updated_by']))
+      );
+      allow delete: if isAdmin();
+    }
+
+    // 3. Trainers Collection
+    match /trainers/{trainerId} {
+      allow get: if isValidId(trainerId);
+      allow list: if true;
+      allow create: if isValidId(trainerId) && isValidTrainer(incoming()) && (
+        isAdmin() || (isSignedIn() && request.auth.uid == trainerId)
+      );
+      allow update: if isValidId(trainerId) && isValidTrainer(incoming()) && (
+        isAdmin() ||
+        (isSignedIn() && request.auth.uid == trainerId &&
+         incoming().diff(existing()).affectedKeys().hasOnly(['assigned_workout_slots_arrays', 'bio', 'updated_at']))
+      );
+      allow delete: if isAdmin();
+    }
+
+    // 4. Membership Plans Collection
+    match /membership_plans/{planId} {
+      allow get: if isValidId(planId);
+      allow list: if true;
+      allow create: if isValidId(planId) && isAdmin() && isValidMembershipPlan(incoming());
+      allow update: if isValidId(planId) && isAdmin() && isValidMembershipPlan(incoming());
+      allow delete: if isAdmin();
+    }
+
+    // 5. Announcements Collection
+    match /announcements/{announcementId} {
+      allow get: if isValidId(announcementId);
+      allow list: if true;
+      allow create: if isValidId(announcementId) && isAdmin() && isValidAnnouncement(incoming());
+      allow update: if isValidId(announcementId) && isAdmin() && isValidAnnouncement(incoming());
+      allow delete: if isAdmin();
+    }
+
+    // 6. Enrollment Requests Collection
+    match /enrollment_requests/{requestId} {
+      allow get: if isValidId(requestId) && (
+        isAdmin() || (isSignedIn() && existing().contact_email == request.auth.token.email)
+      );
+      allow list: if isAdmin();
+      allow create: if isValidId(requestId) && isValidEnrollmentRequest(incoming()) &&
+                    incoming().validation_status == 'submitted';
+      allow update: if isValidId(requestId) && isAdmin() && isValidEnrollmentRequest(incoming());
+      allow delete: if isAdmin();
+    }
+
+    // 7. Admins Collection
+    match /admins/{adminId} {
+      allow read, write: if isAdmin();
+    }
+  }
+}

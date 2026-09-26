@@ -1,0 +1,6 @@
+{
+  "name": "Gym Management Portal",
+  "description": "Modern fitness club management and member experience portal featuring plan comparisons, interactive enrollment, trainer highlights, and unified member/admin/coach dashboard preview.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

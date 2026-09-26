@@ -1,0 +1,184 @@
+{
+  "entities": {
+    "users": {
+      "title": "User",
+      "description": "User identity and role linkage in the gym system",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "maxLength": 128 },
+        "display_name": { "type": "string", "maxLength": 100 },
+        "email": { "type": "string", "format": "email", "maxLength": 120 },
+        "role": { "type": "string", "enum": ["member", "trainer", "admin"] },
+        "linked_entity_id": { "type": "string", "maxLength": 128 },
+        "active_status": { "type": "boolean" },
+        "created_at": { "type": "string", "format": "date-time" },
+        "updated_at": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "display_name", "email", "role", "active_status"]
+    },
+    "members": {
+      "title": "Member",
+      "description": "Authoritative profile and membership state for an enrolled member",
+      "type": "object",
+      "properties": {
+        "member_id": { "type": "string", "maxLength": 128 },
+        "full_name": { "type": "string", "minLength": 2, "maxLength": 100 },
+        "authentication_email_source": { "type": "string", "format": "email", "maxLength": 120 },
+        "contact_phone_string": { "type": "string", "maxLength": 30 },
+        "selected_membership_tier": { "type": "string", "maxLength": 64 },
+        "enrollment_timestamp_date": { "type": "string", "format": "date-time" },
+        "baseline_attendance_active_status_boolean": { "type": "boolean" },
+        "registration_validation_payload_object": { "type": "object" },
+        "created_at": { "type": "string", "format": "date-time" },
+        "updated_at": { "type": "string", "format": "date-time" },
+        "created_by": { "type": "string", "maxLength": 128 },
+        "updated_by": { "type": "string", "maxLength": 128 }
+      },
+      "required": [
+        "member_id",
+        "full_name",
+        "authentication_email_source",
+        "contact_phone_string",
+        "selected_membership_tier",
+        "baseline_attendance_active_status_boolean"
+      ]
+    },
+    "trainers": {
+      "title": "Trainer",
+      "description": "Certified coach identity, specialties, capacity and active status",
+      "type": "object",
+      "properties": {
+        "trainer_id": { "type": "string", "maxLength": 128 },
+        "certified_coach_display_name": { "type": "string", "minLength": 2, "maxLength": 100 },
+        "core_specialization_tags": { "type": "array" },
+        "assigned_workout_slots_arrays": { "type": "array" },
+        "maximum_capacity_limits": { "type": "number" },
+        "tracking_status_activity_flag": { "type": "boolean" },
+        "experience_years": { "type": "number" },
+        "bio": { "type": "string", "maxLength": 500 },
+        "photo_url": { "type": "string", "maxLength": 500 },
+        "contact_email": { "type": "string", "format": "email", "maxLength": 120 },
+        "created_at": { "type": "string", "format": "date-time" },
+        "updated_at": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "trainer_id",
+        "certified_coach_display_name",
+        "core_specialization_tags",
+        "assigned_workout_slots_arrays",
+        "maximum_capacity_limits",
+        "tracking_status_activity_flag"
+      ]
+    },
+    "membership_plans": {
+      "title": "MembershipPlan",
+      "description": "Commercial fitness packages offered by PulseFit gym",
+      "type": "object",
+      "properties": {
+        "plan_id": { "type": "string", "maxLength": 64 },
+        "package_title_string": { "type": "string", "minLength": 2, "maxLength": 50 },
+        "tier_pricing_rate_value": { "type": "number" },
+        "expiration_cycle_duration_months": { "type": "number" },
+        "feature_entitlements_list_arrays": { "type": "array" },
+        "currency_code": { "type": "string", "maxLength": 10 },
+        "description": { "type": "string", "maxLength": 200 },
+        "popular_flag": { "type": "boolean" },
+        "active_status": { "type": "string", "enum": ["active", "inactive", "archived"] },
+        "display_order": { "type": "number" },
+        "created_at": { "type": "string", "format": "date-time" },
+        "updated_at": { "type": "string", "format": "date-time" },
+        "created_by": { "type": "string", "maxLength": 128 }
+      },
+      "required": [
+        "plan_id",
+        "package_title_string",
+        "tier_pricing_rate_value",
+        "expiration_cycle_duration_months",
+        "feature_entitlements_list_arrays"
+      ]
+    },
+    "announcements": {
+      "title": "Announcement",
+      "description": "Official club announcements, alerts, and operational bulletins",
+      "type": "object",
+      "properties": {
+        "announcement_id": { "type": "string", "maxLength": 128 },
+        "title": { "type": "string", "maxLength": 150 },
+        "release_timestamp_date": { "type": "string", "format": "date-time" },
+        "warning_alert_message_body": { "type": "string", "maxLength": 1000 },
+        "publisher_clearance_level_role": { "type": "string", "maxLength": 50 },
+        "baseline_visibility_scope_flag": { "type": "boolean" },
+        "audience": { "type": "string", "maxLength": 50 },
+        "publication_status": { "type": "string", "enum": ["draft", "published", "archived"] },
+        "created_at": { "type": "string", "format": "date-time" },
+        "updated_at": { "type": "string", "format": "date-time" },
+        "created_by": { "type": "string", "maxLength": 128 }
+      },
+      "required": [
+        "announcement_id",
+        "release_timestamp_date",
+        "warning_alert_message_body",
+        "publisher_clearance_level_role",
+        "baseline_visibility_scope_flag"
+      ]
+    },
+    "enrollment_requests": {
+      "title": "EnrollmentRequest",
+      "description": "New athlete membership enrollment application workflow queue",
+      "type": "object",
+      "properties": {
+        "request_id": { "type": "string", "maxLength": 128 },
+        "full_name": { "type": "string", "minLength": 2, "maxLength": 100 },
+        "contact_email": { "type": "string", "format": "email", "maxLength": 120 },
+        "contact_phone_string": { "type": "string", "maxLength": 30 },
+        "selected_membership_plan_id": { "type": "string", "maxLength": 64 },
+        "preferred_trainer_id": { "type": "string", "maxLength": 128 },
+        "preferred_workout_slot": { "type": "object" },
+        "fitness_goal": { "type": "string", "maxLength": 200 },
+        "validation_status": {
+          "type": "string",
+          "enum": ["submitted", "validated", "under_review", "approved", "rejected"]
+        },
+        "submitted_at": { "type": "string", "format": "date-time" },
+        "reviewed_at": { "type": "string", "format": "date-time" },
+        "reviewed_by": { "type": "string", "maxLength": 128 },
+        "created_at": { "type": "string", "format": "date-time" },
+        "updated_at": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "request_id",
+        "full_name",
+        "contact_email",
+        "contact_phone_string",
+        "selected_membership_plan_id",
+        "validation_status"
+      ]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "users",
+      "description": "User accounts with system roles and linked entity IDs"
+    },
+    "/members/{memberId}": {
+      "schema": "members",
+      "description": "Authoritative gym member profiles linked by Firebase Auth UID"
+    },
+    "/trainers/{trainerId}": {
+      "schema": "trainers",
+      "description": "Gym coach profiles with workout slots and specialty tags"
+    },
+    "/membership_plans/{planId}": {
+      "schema": "membership_plans",
+      "description": "Commercial membership tier plans with pricing and entitlements"
+    },
+    "/announcements/{announcementId}": {
+      "schema": "announcements",
+      "description": "Facility bulletins and urgent training announcements"
+    },
+    "/enrollment_requests/{requestId}": {
+      "schema": "enrollment_requests",
+      "description": "Incoming member applications awaiting validation or review"
+    }
+  }
+}
